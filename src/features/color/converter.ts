@@ -13,17 +13,17 @@ export function hexToRYB(hex: string) {
 
 export function rgbToryb(iRed: number, iGreen: number, iBlue: number) {
 	// Remove the white from the color
-	var iWhite = Math.min(iRed, iGreen, iBlue);
+	const iWhite = Math.min(iRed, iGreen, iBlue);
 
 	iRed -= iWhite;
 	iGreen -= iWhite;
 	iBlue -= iWhite;
 
-	var iMaxGreen = Math.max(iRed, iGreen, iBlue);
+	const iMaxGreen = Math.max(iRed, iGreen, iBlue);
 
 	// Get the yellow out of the red+green
 
-	var iYellow = Math.min(iRed, iGreen);
+	let iYellow = Math.min(iRed, iGreen);
 
 	iRed -= iYellow;
 	iGreen -= iYellow;
@@ -40,10 +40,10 @@ export function rgbToryb(iRed: number, iGreen: number, iBlue: number) {
 	iBlue += iGreen;
 
 	// Normalize to values.
-	var iMaxYellow = Math.max(iRed, iYellow, iBlue);
+	const iMaxYellow = Math.max(iRed, iYellow, iBlue);
 
 	if (iMaxYellow > 0) {
-		var iN = iMaxGreen / iMaxYellow;
+		const iN = iMaxGreen / iMaxYellow;
 
 		iRed *= iN;
 		iYellow *= iN;
