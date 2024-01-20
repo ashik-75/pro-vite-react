@@ -55,8 +55,20 @@ const Color = () => {
 					<div className="flex gap-5">
 						RGB: <pre></pre> {JSON.stringify(hexToRGB(color))}
 					</div>
-					<div className="flex gap-5">
-						RYB: <pre></pre> {JSON.stringify(hexToRYB(color))}
+					<div className="">
+						<div>
+							RYB: <pre></pre> {JSON.stringify(hexToRYB(color))}
+						</div>
+						<br />
+						<div>
+							<div>RYB in %</div>
+
+							<ul>
+								<li>R: {Math.round((hexToRYB(color).r / 255) * 100)}%</li>
+								<li>Y: {Math.round((hexToRYB(color).y / 255) * 100)}%</li>
+								<li>B: {Math.round((hexToRYB(color).b / 255) * 100)}%</li>
+							</ul>
+						</div>
 					</div>
 
 					{/* <div
