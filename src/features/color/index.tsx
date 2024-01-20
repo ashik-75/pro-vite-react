@@ -59,7 +59,7 @@ const Color = () => {
 						RYB: <pre></pre> {JSON.stringify(hexToRYB(color))}
 					</div>
 
-					<div
+					{/* <div
 						style={{
 							padding: "20px",
 							background: `rgb(${hexToRYB(color).r},${hexToRYB(color).y},${
@@ -68,7 +68,7 @@ const Color = () => {
 						}}
 					>
 						Modified Color
-					</div>
+					</div> */}
 				</div>
 			)}
 		</div>
