@@ -40,7 +40,7 @@ const Color = () => {
 
 			<br />
 
-			<div className="grid gap-5 grid-cols-3">
+			<div className="grid gap-5 grid-cols-1 md:grid-cols-3">
 				<div>
 					<div
 						onClick={() => setSelected(1)}
