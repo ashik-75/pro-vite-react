@@ -6,7 +6,9 @@ const SelectCategory = () => {
 	return (
 		<div>
 			{data?.categories?.map((category) => (
-				<SelectItem value={category.id?.toString()}>{category.name}</SelectItem>
+				<SelectItem key={category.id} value={category.id?.toString()}>
+					{category.name}
+				</SelectItem>
 			))}
 		</div>
 	);
