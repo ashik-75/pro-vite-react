@@ -70,11 +70,6 @@ const NoteForm = () => {
 
 	return (
 		<div className="max-w-md my-10">
-			<Button
-				onClick={() => toast.success(<div>{form.getValues("categoryId")}</div>)}
-			>
-				Show Value
-			</Button>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 					<FormField
