@@ -1,4 +1,4 @@
-import NoteForm from "../components/note-form";
+import { Link } from "react-router-dom";
 import NoteList from "../components/note-list";
 import SearchNote from "../components/seach-note";
 
@@ -6,7 +6,7 @@ const Keep = () => {
 	return (
 		<div>
 			<SearchNote />
-			<NoteForm />
+			<Link to={"/add-note"}>Add Note</Link>
 			<NoteList />
 		</div>
 	);

@@ -1,16 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterSlide from "../features/counter";
-import noteSlice from "@/features/microblog/api/post-slice";
-import categorySlice from "@/features/microblog/api/category-slice";
+import api from "./api";
+import authSlice from "@/features/auth/api/auth-slice";
 
 const store = configureStore({
 	reducer: {
 		counter: counterSlide,
-		[noteSlice.reducerPath]: noteSlice.reducer,
-		[categorySlice.reducerPath]: categorySlice.reducer,
+		auth: authSlice,
+		[api.reducerPath]: api.reducer,
 	},
-	middleware: (gdm) =>
-		gdm().concat(noteSlice.middleware, categorySlice.middleware),
+	middleware: (gdm) => gdm().concat(api.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

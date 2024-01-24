@@ -1,23 +1,52 @@
-import { useState } from "react";
 import { useGetNotesQuery } from "../api/post-slice";
-
 import NoteDetails from "./note";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Loader } from "lucide-react";
-
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import qs from "query-string";
 
 const NoteList = () => {
-	const [page, setPage] = useState(1);
-	const [searchParams, setSearchParams] = useSearchParams();
-	const { isLoading, data, isFetching } = useGetNotesQuery({
-		page: Math.max(Number(searchParams.get("page")), 1),
-		search: searchParams.get("search") ?? "",
-	});
+	const location = useLocation();
+	const navigate = useNavigate();
+	const searchParams = new URLSearchParams(location.search);
+	const page = Number(searchParams.get("page")) ?? 1;
+	const search = searchParams.get("search") ?? "";
+	const category = searchParams.get("category") ?? "";
+
+	const query = qs.stringify(
+		{ page, search, category },
+		{ skipEmptyString: true, skipNull: true }
+	);
+	console.log({ query });
+	const { isLoading, data, isFetching } = useGetNotesQuery(query);
 
 	if (isLoading) {
 		return <div>Loading ....</div>;
 	}
+
+	const handlePagination = (btnType: "prev" | "next") => {
+		if (btnType === "prev") {
+			const query = qs.stringify(
+				{
+					search,
+					page: page - 1,
+					category,
+				},
+				{ skipEmptyString: true, skipNull: true }
+			);
+			navigate(`?${query}`);
+		} else {
+			const query = qs.stringify(
+				{
+					search,
+					page: page + 1,
+					category,
+				},
+				{ skipEmptyString: true, skipNull: true }
+			);
+			navigate(`?${query}`);
+		}
+	};
 
 	return (
 		<div className="space-y-5">
@@ -29,7 +58,7 @@ const NoteList = () => {
 			</div>
 			<div className="flex gap-2">
 				<Button
-					onClick={() => setPage((prev) => prev - 1)}
+					onClick={() => handlePagination("prev")}
 					disabled={page === 1}
 					size={"sm"}
 					variant={"secondary"}
@@ -44,7 +73,7 @@ const NoteList = () => {
 					)}
 				</Button>
 				<Button
-					onClick={() => setPage((prev) => prev + 1)}
+					onClick={() => handlePagination("next")}
 					disabled={data?.totalPage === page}
 					size={"sm"}
 					variant={"secondary"}

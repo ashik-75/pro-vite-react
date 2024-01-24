@@ -1,10 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Category, CategoryResponse } from "../types/note.types";
+import api from "@/app/api";
 
-const categorySlice = createApi({
-	reducerPath: "category",
-	baseQuery: fetchBaseQuery({ baseUrl: "https://next-api-24.vercel.app/api" }),
-	tagTypes: ["Category"],
+const categorySlice = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getAllCategory: builder.query<CategoryResponse, void>({
 			query: () => "/category",

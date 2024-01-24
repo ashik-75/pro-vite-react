@@ -1,13 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Note, NotesResponse } from "../types/note.types";
+import api from "@/app/api";
 
-const noteSlice = createApi({
-	reducerPath: "note",
-	baseQuery: fetchBaseQuery({ baseUrl: "https://next-api-24.vercel.app/api" }),
-	tagTypes: ["Notes"],
+const noteSlice = api.injectEndpoints({
 	endpoints: (builder) => ({
-		getNotes: builder.query<NotesResponse, { page: number; search: string }>({
-			query: ({ page, search }) => `/note?page=${page}&search=${search}`,
+		getNotes: builder.query<NotesResponse, string>({
+			query: (query) => `/note?${query}`,
 			providesTags: (result, error) => {
 				if (error || !result) {
 					return [{ type: "Notes", id: "LIST" }];

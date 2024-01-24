@@ -5,23 +5,23 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
-import SelectCategory from "./select-category";
 import { useLocation, useNavigate } from "react-router";
-import queryString from "query-string";
+import qs from "query-string";
 import { Button } from "@/components/ui/button";
+import SelectSearchCategory from "./select-search-category";
 
 function SearchNote() {
 	const location = useLocation();
-	const q = queryString.parse(location.search);
-	const [search, setSearch] = useState((q.search as string) ?? "");
+	const queryParams = new URLSearchParams(location.search);
+	const [search, setSearch] = useState(queryParams.get("search") ?? "");
 	const [category, setCategory] = useState("");
 	const router = useNavigate();
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		const qs = queryString.stringify(
+		const query = qs.stringify(
 			{
 				search,
 				category,
@@ -29,8 +29,23 @@ function SearchNote() {
 			},
 			{ skipEmptyString: true, skipNull: true }
 		);
-		toast.success(qs);
-		router(`?${qs}`);
+		toast.success(query);
+		router(`?${query}`);
+	};
+
+	const handleReset = () => {
+		const query = qs.stringify(
+			{
+				search: "",
+				category: "",
+				page: 1,
+			},
+			{ skipEmptyString: true, skipNull: true }
+		);
+		setSearch("");
+		setCategory("");
+		toast.success(query);
+		router(`?${query}`);
 	};
 	return (
 		<div className="max-w-md">
@@ -48,11 +63,18 @@ function SearchNote() {
 							<SelectValue placeholder="select category" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectCategory />
+							<SelectSearchCategory />
 						</SelectContent>
 					</Select>
 				</div>
-				<Button>Search</Button>
+				<div className="flex gap-2">
+					<Button type="submit" variant={"secondary"}>
+						Search
+					</Button>
+					<Button onClick={handleReset} type="button" variant={"secondary"}>
+						Reset
+					</Button>
+				</div>
 			</form>
 		</div>
 	);

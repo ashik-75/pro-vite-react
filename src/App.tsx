@@ -1,14 +1,27 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Keep from "./features/microblog/pages/keep";
+import RequireAuth from "./components/composite/auth-guard";
+import LoginPage from "./features/auth/pages/login-page";
+import RegisterPage from "./features/auth/pages/register-page";
+import AddNote from "./features/microblog/pages/add-note";
+import Navbar from "./components/composite/nav-bar";
+import UserList from "./features/users/user-list";
 
 const App = () => {
 	return (
-		<div className="p-10 font-inter container">
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Keep />} />
-				</Routes>
-			</BrowserRouter>
+		<div className="space-y-10 font-inter container">
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<Keep />} />
+				<Route path="/add-note" element={<RequireAuth />}>
+					<Route index element={<AddNote />} />
+				</Route>
+				<Route path="/users" element={<UserList />} />
+				<Route path="/">
+					<Route path="login" element={<LoginPage />} />
+					<Route path="register" element={<RegisterPage />} />
+				</Route>
+			</Routes>
 		</div>
 	);
 };
