@@ -2,6 +2,7 @@ import api from "@/app/api";
 import { LoginSchemaType } from "../components/login-form";
 import { RegistrationSchemaType } from "../components/registration-form";
 import { ResponseType } from "../types/auth.type";
+import { tokenSet } from "./auth-slice";
 
 const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -26,7 +27,23 @@ const authApi = api.injectEndpoints({
 				};
 			},
 		}),
+		refresh: builder.query<ResponseType, void>({
+			query: () => ({
+				url: `/refresh`,
+				method: "GET",
+			}),
+			onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+				try {
+					const { data } = await queryFulfilled;
+					dispatch(tokenSet({ accessToken: data.accessToken }));
+					console.log("REFresh token data", data);
+				} catch (error) {
+					console.log("ERROR REFRESH", error);
+				}
+			},
+		}),
 	}),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useRefreshQuery } =
+	authApi;

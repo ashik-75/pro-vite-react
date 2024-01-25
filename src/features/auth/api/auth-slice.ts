@@ -13,6 +13,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		tokenSet: (state, action) => {
+			console.log("PAYLOAD: ", action.payload.accessToken);
 			state.user = action.payload.user;
 			state.accessToken = action.payload.accessToken;
 		},
@@ -29,3 +30,5 @@ export default authSlice.reducer;
 export const useProfile = () => {
 	return useSelector((state: RootState) => state.auth);
 };
+
+export const selectToken = (state: RootState) => state.auth.accessToken;

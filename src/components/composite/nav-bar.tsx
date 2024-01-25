@@ -26,14 +26,14 @@ const Navbar = () => {
 					Register
 				</Button>
 				<Button
-					onClick={() => navigate("/add-note")}
+					onClick={() => navigate("/me/add-note")}
 					size={"sm"}
 					variant={"secondary"}
 				>
 					Add Note
 				</Button>
 				<Button
-					onClick={() => navigate("/users")}
+					onClick={() => navigate("/me/users")}
 					size={"sm"}
 					variant={"secondary"}
 				>

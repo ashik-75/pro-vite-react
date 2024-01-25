@@ -6,17 +6,20 @@ import RegisterPage from "./features/auth/pages/register-page";
 import AddNote from "./features/microblog/pages/add-note";
 import Navbar from "./components/composite/nav-bar";
 import UserList from "./features/users/user-list";
+import PersistLogin from "./components/composite/persist-login";
 
 const App = () => {
 	return (
 		<div className="space-y-10 font-inter container">
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Keep />} />
-				<Route path="/add-note" element={<RequireAuth />}>
-					<Route index element={<AddNote />} />
+				<Route element={<PersistLogin />}>
+					<Route path="/" element={<Keep />} />
+					<Route path="/me" element={<RequireAuth />}>
+						<Route path="add-note" element={<AddNote />} />
+						<Route path="users" element={<UserList />} />
+					</Route>
 				</Route>
-				<Route path="/users" element={<UserList />} />
 				<Route path="/">
 					<Route path="login" element={<LoginPage />} />
 					<Route path="register" element={<RegisterPage />} />
