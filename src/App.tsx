@@ -7,6 +7,8 @@ import AddNote from "./features/microblog/pages/add-note";
 import Navbar from "./components/composite/nav-bar";
 import UserList from "./features/users/user-list";
 import PersistLogin from "./components/composite/persist-login";
+import Profile from "./features/auth/pages/profile";
+import OnlyPublic from "./components/composite/only-public";
 
 const App = () => {
 	return (
@@ -15,12 +17,13 @@ const App = () => {
 			<Routes>
 				<Route element={<PersistLogin />}>
 					<Route path="/" element={<Keep />} />
-					<Route path="/me" element={<RequireAuth />}>
+					<Route path="/" element={<RequireAuth />}>
 						<Route path="add-note" element={<AddNote />} />
 						<Route path="users" element={<UserList />} />
+						<Route path="profile" element={<Profile />} />
 					</Route>
 				</Route>
-				<Route path="/">
+				<Route path="/" element={<OnlyPublic />}>
 					<Route path="login" element={<LoginPage />} />
 					<Route path="register" element={<RegisterPage />} />
 				</Route>

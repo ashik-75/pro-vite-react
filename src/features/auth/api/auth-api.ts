@@ -18,6 +18,15 @@ const authApi = api.injectEndpoints({
 				};
 			},
 		}),
+		logout: builder.mutation<void, void>({
+			query: () => {
+				console.log("LOGOUT");
+				return {
+					method: "GET",
+					url: "/logout",
+				};
+			},
+		}),
 		register: builder.mutation<ResponseType, RegistrationSchemaType>({
 			query: (body) => {
 				return {
@@ -45,5 +54,9 @@ const authApi = api.injectEndpoints({
 	}),
 });
 
-export const { useLoginMutation, useRegisterMutation, useRefreshQuery } =
-	authApi;
+export const {
+	useLoginMutation,
+	useRegisterMutation,
+	useRefreshQuery,
+	useLogoutMutation,
+} = authApi;

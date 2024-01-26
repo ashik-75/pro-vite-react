@@ -9,6 +9,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const PersistLogin: React.FC = () => {
 	const [persist] = usePersist();
 	const token = useSelector(selectToken);
+	console.log({ token });
 	const { isLoading, isError } = useRefreshQuery(undefined, {
 		skip: !(persist && !token),
 	});
