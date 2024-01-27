@@ -1,35 +1,19 @@
-import { Routes, Route } from "react-router-dom";
-import Keep from "./features/microblog/pages/keep";
-import RequireAuth from "./components/composite/auth-guard";
-import LoginPage from "./features/auth/pages/login-page";
-import RegisterPage from "./features/auth/pages/register-page";
-import AddNote from "./features/microblog/pages/add-note";
-import Navbar from "./components/composite/nav-bar";
-import UserList from "./features/users/user-list";
-import PersistLogin from "./components/composite/persist-login";
-import Profile from "./features/auth/pages/profile";
-import OnlyPublic from "./components/composite/only-public";
+import Sidebar from "./components/layout/side-bar";
+import Header from "./components/layout/header";
+import RootRoutes from "./routes";
 
-const App = () => {
+export default function Component() {
 	return (
-		<div className="space-y-10 font-inter container">
-			<Navbar />
-			<Routes>
-				<Route element={<PersistLogin />}>
-					<Route path="/" element={<Keep />} />
-					<Route path="/" element={<RequireAuth />}>
-						<Route path="add-note" element={<AddNote />} />
-						<Route path="users" element={<UserList />} />
-						<Route path="profile" element={<Profile />} />
-					</Route>
-				</Route>
-				<Route path="/" element={<OnlyPublic />}>
-					<Route path="login" element={<LoginPage />} />
-					<Route path="register" element={<RegisterPage />} />
-				</Route>
-			</Routes>
+		<div className="min-h-screen w-full ">
+			<div className="hidden md:fixed md:w-[280px] h-full top-0 left-0 border-r bg-gray-50/40 md:block dark:bg-gray-800/40">
+				<Sidebar />
+			</div>
+			<div className="flex flex-col md:ml-[280px] h-full">
+				<Header />
+				<main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6 h-full">
+					<RootRoutes />
+				</main>
+			</div>
 		</div>
 	);
-};
-
-export default App;
+}
