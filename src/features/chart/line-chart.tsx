@@ -149,11 +149,18 @@ const LineChartX = () => {
 					index="date"
 					categories={["income", "expense"]}
 					colors={["teal", "orange"]}
-					yAxisWidth={30}
+					yAxisWidth={50}
 					curveType="natural"
 					showLegend={true}
 					showAnimation={true}
 					animationDuration={2000}
+					startEndOnly={false}
+					showXAxis={true}
+					showYAxis={true}
+					intervalType="preserveStartEnd"
+					maxValue={5000}
+					noDataText="Uff, nothing found"
+					// tickGap={0}
 				/>
 			</Card>
 		</div>
