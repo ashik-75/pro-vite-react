@@ -6,7 +6,6 @@ import RegisterPage from "./features/auth/pages/register-page";
 import AddNote from "./features/microblog/pages/add-note";
 import Navbar from "./components/composite/nav-bar";
 import UserList from "./features/users/user-list";
-import PersistLogin from "./components/composite/persist-login";
 import Profile from "./features/auth/pages/profile";
 import OnlyPublic from "./components/composite/only-public";
 
@@ -15,7 +14,7 @@ const App = () => {
 		<div className="space-y-10 font-inter container">
 			<Navbar />
 			<Routes>
-				<Route element={<PersistLogin />}>
+				<Route>
 					<Route path="/" element={<Keep />} />
 					<Route path="/" element={<RequireAuth />}>
 						<Route path="add-note" element={<AddNote />} />
