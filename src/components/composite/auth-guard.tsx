@@ -6,7 +6,7 @@ const RequireAuth = () => {
 	const location = useLocation();
 
 	if (!profile.accessToken) {
-		return <Navigate to={"/login"} state={{ state: location.pathname }} />;
+		return <Navigate to={"/login"} state={{ path: location.pathname }} />;
 	}
 	return <Outlet />;
 };

@@ -1,12 +1,12 @@
-import { selectToken } from "@/features/auth/api/auth-slice";
+import { selectAuth } from "@/features/auth/api/auth-slice";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
 const OnlyPublic: React.FC = () => {
-	const accessToken = useSelector(selectToken);
+	const auth = useSelector(selectAuth);
 
-	if (accessToken) {
+	if (auth.accessToken) {
 		return <Navigate to={"/profile"} />;
 	}
 	return <Outlet />;

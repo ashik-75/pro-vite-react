@@ -3,9 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 
-const initialState: { user: string; accessToken: string } = {
+const initialState: { user: string; accessToken: string; loaded: boolean } = {
 	user: "",
 	accessToken: "",
+	loaded: false,
 };
 
 const authSlice = createSlice({
@@ -16,10 +17,12 @@ const authSlice = createSlice({
 			console.log("PAYLOAD: ", action.payload.accessToken);
 			state.user = action.payload.user;
 			state.accessToken = action.payload.accessToken;
+			state.loaded = true;
 		},
 		logout: (state) => {
 			state.user = "";
 			state.accessToken = "";
+			state.loaded = true;
 		},
 	},
 });
@@ -31,4 +34,4 @@ export const useProfile = () => {
 	return useSelector((state: RootState) => state.auth);
 };
 
-export const selectToken = (state: RootState) => state.auth.accessToken;
+export const selectAuth = (state: RootState) => state.auth;

@@ -45,8 +45,7 @@ const RegistrationForm = () => {
 	});
 
 	const onSubmit = (data: RegistrationSchemaType) => {
-		console.log({ data });
-		register(data)
+		register({ user: data.username, pwd: data.password })
 			.unwrap()
 			.then(() => {
 				toast.success("Registration successfull");

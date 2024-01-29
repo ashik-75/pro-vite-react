@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import { useLoginMutation } from "../api/auth-api";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { tokenSet } from "../api/auth-slice";
 
@@ -27,18 +27,22 @@ export type LoginSchemaType = z.infer<typeof loginSchema>;
 const LoginForm = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [login, { isLoading }] = useLoginMutation();
 	const form = useForm<LoginSchemaType>({
 		resolver: zodResolver(loginSchema),
 	});
 	const { isValid } = form.formState;
 
+	const redirectPath = location.state?.path ?? "/";
+
 	const onSubmit = (data: LoginSchemaType) => {
 		login(data)
 			.unwrap()
 			.then((response) => {
+				localStorage.setItem("persist", JSON.stringify(true));
 				dispatch(tokenSet({ ...response, user: data }));
-				navigate("/");
+				navigate(redirectPath);
 				toast.success("Logged in");
 			})
 			.catch(() => {
