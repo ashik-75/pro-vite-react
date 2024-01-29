@@ -95,3 +95,8 @@ body,
 	font-family: "opensans";
 	src: url("../public/fonts/opensans.ttf");
 }
+
+@font-face {
+	font-family: "poppins";
+	src: url("../public/fonts/poppins.ttf");
+}

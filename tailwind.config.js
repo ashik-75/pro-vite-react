@@ -21,6 +21,7 @@ module.exports = {
 				inter: ["inter"],
 				nunito: ["nunito"],
 				opensans: ["opensans"],
+				poppins: ["poppins"],
 			},
 			colors: {
 				border: "hsl(var(--border))",
