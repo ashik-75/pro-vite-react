@@ -12,7 +12,7 @@ const rickyApi = api.injectEndpoints({
 					},
 				};
 			},
-			keepUnusedDataFor: 1,
+			// keepUnusedDataFor: 30,
 		}),
 		character: builder.query<Character, string>({
 			query: (id) => `/character/${id}`,

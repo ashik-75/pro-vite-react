@@ -5,6 +5,18 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export function removeCookie(name: string) {
-	document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+export function sleep(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function Await<T>({
+	promise,
+	children,
+}: {
+	promise: Promise<T>;
+	children: (value: T) => JSX.Element;
+}) {
+	const data = await promise;
+
+	return children(data);
 }
