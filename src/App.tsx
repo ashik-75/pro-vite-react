@@ -5,6 +5,7 @@ import Navbar from "./components/composite/nav-bar";
 import BuiltInHooks from "./features/built-hooks";
 import HookId from "./features/built-hooks/hook-id";
 import NotFound from "./features/misc/not-found";
+import Animation from "./features/animation";
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 			<div className="p-5">
 				<Routes>
 					<Route path="/" element={<Rick />} />
+					<Route path="/animation" element={<Animation />} />
 					<Route path="/:id" element={<Details />} />
 					<Route path="/hooks" element={<BuiltInHooks />}>
 						<Route path="id" element={<HookId />} />

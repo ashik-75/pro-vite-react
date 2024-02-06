@@ -12,7 +12,7 @@ const HookId = () => {
 		{ isSkipEmpty: true, isSkipNull: true }
 	);
 
-	console.log({ info });
+	console.log(info);
 
 	return (
 		<div className="max-w-3xl">
