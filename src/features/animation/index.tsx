@@ -1,30 +1,29 @@
-import useCopyToClipboard from "@/hooks/use-copy-to-clipboard";
-import useDocumentTitle from "@/hooks/use-document-title";
-import { Check, Copy } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import useFavicon from "@/hooks/use-favicon";
+import usePrevious from "@/hooks/use-previous";
 import { useState } from "react";
-const Animation = () => {
-	const [count, setCount] = useState(1);
-	useDocumentTitle(`Animation props ${count}`);
-	const [copyText, copyToClipBoard] = useCopyToClipboard();
-	const randomId = crypto.randomUUID();
 
+function Animation() {
+	const [textarea, setTextarea] = useState("");
+	const [f, setF] = useState("");
+	const previous = usePrevious(f);
+
+	useFavicon("/xing.png");
 	return (
-		<div>
-			<button onClick={() => setCount((p) => p + 5)}>Press</button>
-			<button
-				className="border p-2 rounded-lg"
-				onClick={() => {
-					copyToClipBoard(`${randomId}`);
+		<div className="max-w-md">
+			<div>previous : {previous}</div>
+			<div>current: {f}</div>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					setF(textarea);
+					setTextarea("");
 				}}
 			>
-				{copyText ? (
-					<Check size={16} className="text-slate-400" />
-				) : (
-					<Copy size={16} className="text-slate-400" />
-				)}
-			</button>
+				<Input onChange={(e) => setTextarea(e.target.value)} value={textarea} />
+			</form>
 		</div>
 	);
-};
+}
 
 export default Animation;
