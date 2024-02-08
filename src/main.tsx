@@ -8,12 +8,12 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<Toaster />
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	</React.StrictMode>
+	// <React.StrictMode>
+	<Provider store={store}>
+		<Toaster />
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
+	// </React.StrictMode>
 );

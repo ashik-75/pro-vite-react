@@ -1,9 +1,9 @@
-import SearchFilter from "./components/search-filter";
+import RickyNews from "./components/ricky-news";
 
 const Animation = () => {
 	return (
 		<div>
-			<SearchFilter />
+			<RickyNews />
 		</div>
 	);
 };
