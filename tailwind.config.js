@@ -22,6 +22,7 @@ module.exports = {
 				nunito: ["nunito"],
 				opensans: ["opensans"],
 				poppins: ["poppins"],
+				zila: [`'Zilla Slab', serif`],
 			},
 			colors: {
 				border: "hsl(var(--border))",

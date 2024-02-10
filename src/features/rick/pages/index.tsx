@@ -16,7 +16,7 @@ const Rick = () => {
 	}
 
 	return (
-		<div className="font-poppins space-y-5">
+		<div className="space-y-5 font-zila">
 			<h1>Rick and morty</h1>
 			<Button>
 				{isFetching ? <Loader className="animate-spin" /> : "Oye"}
@@ -27,7 +27,7 @@ const Rick = () => {
 					<Link to={`/${ch.id}`}>
 						<div key={ch.id} className="p-4 rounded-3xl border">
 							<img className="rounded-3xl" src={ch.image} alt="" />
-							<h1>
+							<h1 className="font-bold">
 								{ch.name} - {format(new Date(), "hh:mm:ss aaa")}
 							</h1>
 						</div>

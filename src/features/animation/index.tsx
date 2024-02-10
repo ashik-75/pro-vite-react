@@ -1,9 +1,9 @@
-import RickyNews from "./components/ricky-news";
+import VideoPlayer from "./components/video-player";
 
 const Animation = () => {
 	return (
 		<div>
-			<RickyNews />
+			<VideoPlayer />
 		</div>
 	);
 };
