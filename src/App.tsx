@@ -1,11 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Rick from "./features/rick/pages";
-import Details from "./features/rick/pages/details";
 import Navbar from "./components/composite/nav-bar";
-import BuiltInHooks from "./features/built-hooks";
-import HookId from "./features/built-hooks/hook-id";
-import NotFound from "./features/misc/not-found";
-import Animation from "./features/animation";
+import Home from "./pages/Home";
+import Login from "./pages/login";
+import toast from "react-hot-toast";
 
 const App = () => {
 	return (
@@ -13,13 +10,11 @@ const App = () => {
 			<Navbar />
 			<div className="p-5">
 				<Routes>
-					<Route path="/" element={<Rick />} />
-					<Route path="/animation" element={<Animation />} />
-					<Route path="/:id" element={<Details />} />
-					<Route path="/hooks" element={<BuiltInHooks />}>
-						<Route path="id" element={<HookId />} />
-					</Route>
-					<Route path="*" element={<NotFound />} />
+					<Route path="/" element={<Home />} />
+					<Route
+						path="/login"
+						element={<Login fn={(info) => toast.error(JSON.stringify(info))} />}
+					/>
 				</Routes>
 			</div>
 		</div>
