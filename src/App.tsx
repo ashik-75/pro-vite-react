@@ -3,6 +3,7 @@ import Navbar from "./components/composite/nav-bar";
 import Home from "./pages/Home";
 import Login from "./pages/login";
 import toast from "react-hot-toast";
+import Books from "./pages/books";
 
 const App = () => {
 	return (
@@ -15,6 +16,7 @@ const App = () => {
 						path="/login"
 						element={<Login fn={(info) => toast.error(JSON.stringify(info))} />}
 					/>
+					<Route path="/books" element={<Books />} />
 				</Routes>
 			</div>
 		</div>
