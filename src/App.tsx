@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/composite/nav-bar";
-import Home from "./pages/Home";
 import Login from "./pages/login";
 import toast from "react-hot-toast";
 import Books from "./pages/books";
+import Home from "./pages/Home";
 
 const App = () => {
 	return (

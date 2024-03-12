@@ -1,0 +1,7 @@
+{
+	"appId": "schedulingapp-jjrfu",
+	"appUrl": "https://realm.mongodb.com/groups/5d0320f5ff7a25dfd8f5c72f/apps/65bb29715c30060017188892",
+	"baseUrl": "https://realm.mongodb.com",
+	"dataSourceName": "mongodb-atlas",
+	"dbName": "schedulingappdev"
+}
